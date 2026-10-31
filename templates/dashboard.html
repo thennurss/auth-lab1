@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Личный кабинет</h1>
+  <p>Логин: <strong>{{ g.user.username }}</strong></p>
+  <p>Роль: <span class="badge {{ g.user.role }}">{{ 'Администратор' if g.user.role == 'admin' else 'Пользователь' }}</span></p>
+  {% if g.user.role == 'admin' %}
+    <p><a href="{{ url_for('admin') }}">Открыть админ-панель →</a></p>
+  {% else %}
+    <p style="color:var(--muted)">Права доступа для этой учётной записи будут настроены в следующей лабораторной работе.</p>
+  {% endif %}
+</div>
+{% endblock %}
